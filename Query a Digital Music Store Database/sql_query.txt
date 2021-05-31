@@ -26,3 +26,16 @@ FROM Employee AS e JOIN Customer AS c
 ON e.EmployeeId = c.SupportRepId
 GROUP BY e.FirstName, e.LastName
 ORDER BY num_deal DESC;
+
+/* Query 4 - query used for forth insight */
+/* Question 4: Who is writing the rock music? */
+
+SELECT sub.Name, Artist.Name
+FROM (SELECT g.Name, t.AlbumId
+     FROM Track AS t JOIN Genre AS g
+     ON g.GenreId = t.GenreId
+     WHERE g.Name = 'Rock'
+	 GROUP BY t.AlbumId) AS sub
+JOIN Album ON Album.AlbumId = sub.AlbumId
+JOIN Artist ON Artist.ArtistId = Album.ArtistId
+GROUP BY Artist.Name
