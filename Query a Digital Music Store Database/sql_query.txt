@@ -1,0 +1,10 @@
+/* Query 1 - query used for first insight */
+/* Question 1: What is the most popular music Genre? */
+
+SELECT Genre.Name, SUM(InvoiceLine.Quantity) AS purchase_amt
+FROM Genre 
+JOIN Track ON Genre.GenreId = Track.GenreId
+JOIN InvoiceLine ON Track.TrackId = InvoiceLine.TrackId
+GROUP BY Genre.Name
+ORDER BY purchase_amt DESC;
+
