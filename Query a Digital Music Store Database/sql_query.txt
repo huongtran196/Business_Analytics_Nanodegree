@@ -17,3 +17,12 @@ JOIN Invoice AS i ON c.CustomerId = i.CustomerId
 GROUP BY c.FirstName, c.LastName, i.BillingCountry
 ORDER BY total_purchase DESC
 LIMIT 10;
+
+/* Query 3 - query used for third insight */
+/* Question 3: Which Sales Rep has best performance? */
+
+SELECT e.FirstName, e.LastName, COUNT(*) AS num_deal
+FROM Employee AS e JOIN Customer AS c
+ON e.EmployeeId = c.SupportRepId
+GROUP BY e.FirstName, e.LastName
+ORDER BY num_deal DESC;
