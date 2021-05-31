@@ -8,3 +8,12 @@ JOIN InvoiceLine ON Track.TrackId = InvoiceLine.TrackId
 GROUP BY Genre.Name
 ORDER BY purchase_amt DESC;
 
+/* Query 2 - query used for second insight */
+/* Question 2: Top 10 customers who has spent the most on music in each country? */
+
+SELECT c.FirstName, c.LastName, i.BillingCountry, SUM(i.Total) AS total_purchase
+FROM Customer AS c
+JOIN Invoice AS i ON c.CustomerId = i.CustomerId
+GROUP BY c.FirstName, c.LastName, i.BillingCountry
+ORDER BY total_purchase DESC
+LIMIT 10;
